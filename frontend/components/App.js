@@ -52,7 +52,9 @@ const reducer = (state, action) => {
         return {...qt, apocryphal: !qt.apocryphal}
       } )}
     case SET_HIGHLIGHTED_QUOTE:
-      return {...state}
+      return {...state, highlightedQuote: state.highlightedQuote === action.payload
+          ? null: action.payload
+      }
     case TOGGLE_VISIBILITY:
       return {...state}
       default:
@@ -80,6 +82,7 @@ export default function App() {
   }
   const setHighlightedQuote = id => {
     // 👇 implement
+    dispatch({type: SET_HIGHLIGHTED_QUOTE, payload: id})
   }
   const toggleVisibility = () => {
     // 👇 implement
@@ -92,6 +95,7 @@ export default function App() {
         quotes={state.quotes}
         highlightedQuote = {state.highlightedQuote}
         editQuoteAuthenticity={editQuoteAuthenticity}
+        setHighlightedQuote={setHighlightedQuote}
         deleteQuote={deleteQuote}
       // 👇 lots of props are missing! Check the Quotes component
 
